@@ -1,47 +1,46 @@
 # Telescope
 
-[中文说明](README_CN.md)
+[English](README.md)
 
-## Available Listeners
+## 可用监听器
 
-- [x] Request Monitor
-- [x] Exception Monitor
-- [x] Data Query Monitor
-- [x] gRPC Request Monitor
-- [x] Redis Monitor
-- [x] Log Monitor
-- [x] Command Line Monitor
-- [x] Event Monitor
-- [x] HTTP Client Monitor
-- [x] Cache Monitor
-- [x] Scheduled Task Monitor
+- [x] 请求监视器
+- [x] 异常监视器
+- [x] 数据查询监视器
+- [x] gRPC请求监视器
+- [x] Redis监视器
+- [x] 日志监视器
+- [x] 命令行监视器
+- [x] 事件监视器
+- [x] HTTP Client 监视器
+- [x] 缓存监视器
+- [x] 定时任务监视器
 
-## Installation
+## 安装
 
 ```shell
 composer require friendsofhyperf/telescope
 ```
 
-Use the `vendor:publish` command to publish its public resources
+使用 `vendor:publish`  命令来发布其公共资源
 
 ```shell
 php bin/hyperf.php vendor:publish friendsofhyperf/telescope
 ```
 
-Run the `migrate` command to execute database changes and create the tables required by
-Telescope:
+运行 `migrate` 命令执行数据库变更来创建和保存 Telescope 需要的数据
 
 ```shell
 php bin/hyperf.php migrate
 ```
 
-## Usage
+## 使用
 
-### Middleware (Optional for gRPC)
+### 中间件（可选，仅用于gRPC）
 
-Add the middleware in the `config/autoload/middlewares.php` configuration file
+在 `config/autoload/middlewares.php`配置文件加上中间件
 
-To enable additional gRPC functionality, use the `grpc` middleware
+如需gRPC的额外功能，请使用`grpc`中间件
 
 ```php
 <?php
@@ -53,33 +52,29 @@ return [
 ];
 ```
 
-> Note: Request tracking is automatically enabled via the RequestHandledListener. The
-> TelescopeMiddleware is only needed for additional gRPC-specific functionality.
+> 注意: 请求跟踪功能已通过 RequestHandledListener 自动启用。TelescopeMiddleware 仅用于 gRPC 的额外功能。
 
-## View Dashboard
+## 查看仪表板
 
 `http://127.0.0.1:9501/telescope`
 
-## Database Configuration
+## 数据库配置
 
-Manage the database connection configuration in `config/autoload/telescope.php`. It defaults to
-the `default` connection:
+在 `config/autoload/telescope.php`管理数据库连接配置，默认使用`default`连接
 
 ```php
 'connection' => env('TELESCOPE_DB_CONNECTION', 'default'),
 ```
 
-## Tags
+## 标签
 
-You may wish to attach your own custom tags to entries. To do this, use the
-**`Telescope::tag`** method.
+您可能希望将自己的自定义标签附加到条目。为此，您可以使用 **`Telescope::tag`**  方法。
 
-## Batch Filtering
+## 批量过滤
 
-You may want to record entries only under certain special conditions. To do this, use the
-**`Telescope::filter`** method.
+您可能只想记录某些特殊条件下的条目。为此，您可以使用 **`Telescope::filter`** 方法。
 
-Example
+例子
 
 ```php
 use FriendsOfHyperf\Telescope\Telescope;
